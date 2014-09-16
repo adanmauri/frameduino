@@ -6,10 +6,7 @@ This framework is under development. Alpha version released.
 
 Examples using raw code and manual configuration.
 
-### [Python](http://www.python.org/) ###
 ```
-#!python
-
 from pinguino import *
 from drivers.usb_driver import *
 
