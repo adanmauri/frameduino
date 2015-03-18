@@ -29,11 +29,12 @@ class Pinguino():
     
     def __init__(self, driver=None):
         if (driver != None):
-	    self.setDriver(driver)
+            self.setDriver(driver)
 
     # ---------------------------------------------------------------------- 
     # Connection Functions
     # ---------------------------------------------------------------------- 
+    
     def disconnect(self):
         try:
              self.driver.disconnect()
@@ -72,6 +73,15 @@ class Pinguino():
     def getDriver(self):
         return self.driver
 
+    # ----------------------------------------------------------------------
+    # Write
+    # ----------------------------------------------------------------------
+    def write(self, msg):
+		try:
+            return self.driver.write(msg)
+        except AttributeError:
+            return self.driverError("write") 
+    
     # ---------------------------------------------------------------------- 
     # Pinguino Functions
     # ---------------------------------------------------------------------- 
