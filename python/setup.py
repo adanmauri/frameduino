@@ -9,7 +9,7 @@ with open(os.path.join(here, '..', 'README.md')) as f:
     long_description = f.read()
 
 setup(
-    name='FrameDuino',
+    name='frameduino',
     version='0.2.2',
     description='Pinguino Board Framework',
     long_description=long_description,

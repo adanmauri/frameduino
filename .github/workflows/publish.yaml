@@ -27,7 +27,7 @@ jobs:
 
       - name: Build sdist
         working-directory: python
-        run: python setup.py sdist
+        run: rm -rf dist && python setup.py sdist
 
       - name: Upload sdist artifact
         uses: actions/upload-artifact@v4
@@ -42,7 +42,7 @@ jobs:
     timeout-minutes: 15
     environment:
       name: pypi
-      url: https://pypi.org/project/FrameDuino/
+      url: https://pypi.org/project/frameduino/
     permissions:
       contents: read
       # Required for PyPI trusted publishing (OIDC); no API token needed.
