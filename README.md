@@ -1,3 +1,5 @@
+> ⚠️ **Deprecated.** This project's successor is [liveduino](https://github.com/adanmauri/liveduino) — use that for new projects.
+
 ## FrameDuino ##
 
 FrameDuino is a Python 2 framework that talks to a [Pinguino](https://github.com/PinguinoIDE/pinguino) board using the Arduino-style API you already know: `pinMode`, `digitalWrite`, `digitalRead`, `analogRead`, `analogWrite`, `eepromRead`/`eepromWrite`. The `usb_interpreter.pde` firmware runs on the board and listens for these commands over USB, Bluetooth, or serial, so your Python script drives the hardware directly, without compiling and flashing a sketch for every change.

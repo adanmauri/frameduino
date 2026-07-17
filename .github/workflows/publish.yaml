@@ -1,0 +1,60 @@
+---
+name: Publish to PyPI
+
+on: # yamllint disable-line rule:truthy
+  release:
+    types: [published]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build sdist (Python 2)
+    runs-on: ubuntu-latest
+    container: python:2.7
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install setuptools (last release supporting Python 2)
+        run: pip install "setuptools==44.1.1"
+
+      - name: Build sdist
+        working-directory: python
+        run: python setup.py sdist
+
+      - name: Upload sdist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frameduino-sdist
+          path: python/dist/*.tar.gz
+
+  publish:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: pypi
+      url: https://pypi.org/project/FrameDuino/
+    permissions:
+      contents: read
+      # Required for PyPI trusted publishing (OIDC); no API token needed.
+      id-token: write
+    steps:
+      - name: Download sdist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frameduino-sdist
+          path: dist
+
+      - name: Publish to PyPI (trusted publishing)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist

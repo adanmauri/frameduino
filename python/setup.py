@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import os
-from distutils.core import setup
+from setuptools import setup
 
 here = os.path.dirname(os.path.abspath(__file__))
 with open(os.path.join(here, '..', 'README.md')) as f:
@@ -10,7 +10,7 @@ with open(os.path.join(here, '..', 'README.md')) as f:
 
 setup(
     name='FrameDuino',
-    version='0.2',
+    version='0.2.2',
     description='Pinguino Board Framework',
     long_description=long_description,
     long_description_content_type='text/markdown',
